@@ -109,6 +109,7 @@ export default {
     },
     addTo() {
       if (this.name && this.link && this.price) {
+        this.product.id = Date.now();
         this.$emit("add", this.product);
         this.product = {
           name: "",
