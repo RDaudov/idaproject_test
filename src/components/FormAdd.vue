@@ -1,5 +1,5 @@
 <template>
-  <form class="form">
+  <form ref="anyName" class="form">
     <label for="name" class="label">Наименование товара<span></span></label>
     <input
       class="input"
@@ -106,6 +106,7 @@ export default {
     async submit() {
       const isFormCorrect = await this.v$.$validate();
       if (!isFormCorrect) return;
+      this.$refs.anyName.reset();
     },
     addTo() {
       if (this.name && this.link && this.price) {
