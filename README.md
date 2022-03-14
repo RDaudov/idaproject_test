@@ -1,5 +1,10 @@
 # idaproject
 
+## Clone from git
+```
+git clone https://github.com/RDaudov/idaproject_test.git .
+```
+
 ## Project setup
 ```
 npm install
