@@ -50,6 +50,10 @@ export default {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   top: -8px;
   right: -8px;
+  &:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    transform: scale(1.03);
+  }
 }
 .product-list {
   display: flex;

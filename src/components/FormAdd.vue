@@ -1,56 +1,54 @@
 <template>
   <form class="form">
-    <label for="name">Наименование товара<span></span></label>
+    <label for="name" class="label">Наименование товара<span></span></label>
     <input
+      class="input"
       @input="product.name = $event.target.value"
       :class="{ invalid: v$.name.$error }"
       type="text"
-      name="nameInput"
-      id="name"
       placeholder="Введите наименование товара"
       v-model="v$.name.$model"
     />
     <small class="error" v-if="v$.name.$error"
       >Поле является обязательным
     </small>
-    <label for="description">Описание товара</label>
+    <label for="description" class="label">Описание товара</label>
     <textarea
+      class="input description"
       @input="product.description = $event.target.value"
-      class="description"
       type="text"
-      name="description"
-      id="about"
       placeholder="Введите описание товара"
       v-model="v$.description.$model"
     ></textarea>
-    <label for="link">Ссылка на изображение товара<span></span></label>
+    <label for="link" class="label"
+      >Ссылка на изображение товара<span></span
+    ></label>
     <input
+      class="input"
       @input="product.link = $event.target.value"
       :class="{ invalid: v$.link.$error }"
       type="text"
-      name="linkInput"
       v-model="v$.link.$model"
-      id="link"
       placeholder="Введите ссылку"
     />
     <small class="error" v-if="v$.link.$error"
       >Поле является обязательным</small
     >
-    <label for="price">Цена товара<span></span></label>
+    <label for="price" class="label">Цена товара<span></span></label>
     <input
+      class="input"
       @input="product.price = $event.target.value"
       v-imask="mask"
       :class="{ invalid: v$.price.$error }"
       type="text"
-      name="priceInput"
       v-model.number="v$.price.$model"
-      id="price"
       placeholder="Введите цену"
     />
     <small class="error" v-if="v$.price.$error"
       >Поле является обязательным</small
     >
     <button
+      class="button"
       type="submit"
       :disabled="v$.$error"
       @click="submit"
@@ -128,7 +126,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-form {
+.form {
   font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -149,8 +147,7 @@ form {
   top: 24px;
 }
 
-input,
-textarea {
+.input {
   height: 36px;
   width: 100%;
   background: #fffefb;
@@ -196,7 +193,7 @@ textarea {
   margin: 4px 0 2px;
 }
 
-label {
+.label {
   align-self: flex-start;
   font-size: 10px;
   line-height: 13px;
@@ -213,7 +210,7 @@ label {
   }
 }
 
-button {
+.button {
   font-family: Inter;
   font-style: normal;
   font-weight: 600;
@@ -237,6 +234,7 @@ button {
     }
   }
 }
+
 @media only screen and (max-width: 740px) {
   .form {
     position: unset;
