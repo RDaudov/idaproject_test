@@ -58,7 +58,6 @@ export default {
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1044px;
   overflow: auto;
   margin-top: 16px;
   padding: 0 8px;
@@ -148,16 +147,13 @@ export default {
 
 @media only screen and (max-width: 1440px) {
   .product-list {
-    justify-content: center;
-    max-width: 800px;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 }
 
-@media only screen and (max-width: 1120px) {
+@media only screen and (max-width: 720px) {
   .product-list {
     justify-content: center;
-    max-width: 400px;
   }
 }
 </style>

@@ -1,18 +1,21 @@
 <template>
   <h1 class="title">Добавление товара</h1>
   <form-add @add="addTo" />
+  <sort-product v-model="selectedSort" :options="sortOptions"/>
   <product-list :products="products" @remove="removeFrom" />
 </template>
 
 <script>
 import FormAdd from "./components/FormAdd.vue";
 import ProductList from "./components/ProductList.vue";
+import SortProduct from "./components/SortProduct.vue"
 
 export default {
   name: "App",
   components: {
     FormAdd,
     ProductList,
+    SortProduct
   },
   data() {
     return {
@@ -69,6 +72,12 @@ export default {
       name: "",
       description: "",
       price: "",
+      selectedSort: '',
+      sortOptions: [
+        {value: 'name', name: 'По наименованию'},
+        {value: 'price', name: 'По цене min'},
+        {value: 'price', name: 'По цене max'},
+      ]
     };
   },
   methods: {
@@ -79,18 +88,22 @@ export default {
       this.products = this.products.filter((p) => p.id !== product.id);
     },
   },
+  watch: {
+    selectedSort(newValue) {
+      console.log(newValue);
+    }
+  }
 };
 </script>
 
 <style>
 #app {
-  max-width: 1440px;
-  justify-content: center;
   background: #e5e5e5;
   margin: auto;
   padding-top: 32px;
   display: grid;
   justify-content: flex-start;
+  grid-template-columns: 1fr 7fr;
 }
 
 .form {
@@ -119,9 +132,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .sort {
-    margin-right: 40px;
   }
 }
 </style>

@@ -49,9 +49,7 @@
     >
     <button
       class="button"
-      type="submit"
       :disabled="v$.$error"
-      @click="submit"
       @click.prevent="addTo"
       :class="{ active: !v$.$invalid }"
     >
@@ -118,6 +116,10 @@ export default {
           link: "",
           price: "",
         };
+        this.name = "";
+        this.description = "";
+        this.link = "";
+        this.price = "";
       }
     },
   },
