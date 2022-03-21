@@ -3,7 +3,6 @@
   <form-add @add="addTo" />
   <sort-product v-model="selectedSort" :options="sortOptions" />
   <product-list :products="sortProduct" @remove="removeFrom" />
-  <input type="button" value="1" @click="sort" />
 </template>
 
 <script>
