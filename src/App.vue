@@ -3,7 +3,7 @@
   <form-add @add="addTo" />
   <sort-product v-model="selectedSort" :options="sortOptions" />
   <product-list :products="sortProduct" @remove="removeFrom" />
-  <input type="button" value="1" @click="sort"/>
+  <input type="button" value="1" @click="sort" />
 </template>
 
 <script>
@@ -75,7 +75,8 @@ export default {
       selectedSort: "",
       sortOptions: [
         { value: "name", name: "По наименованию" },
-        { value: "priceMin", name: "По цене min" }
+        { value: "priceMin", name: "По цене min" },
+        { value: "priceMax", name: "По цене min" },
       ],
     };
   },
@@ -90,16 +91,20 @@ export default {
   computed: {
     sortProduct() {
       switch (this.selectedSort) {
-        default:
-          return this.products;
         case "name":
           return [...this.products].sort((a, b) => {
             return a[this.selectedSort]?.localeCompare(b[this.selectedSort]);
           });
         case "priceMin":
-          return [...this.products].sort((a, b) =>
-            a.selectedSort > b.selectedSort ? 1 : -1
+          return [...this.products].sort(
+            (a, b) => parseFloat(a.price) - parseFloat(b.price)
           );
+        case "priceMax":
+          return [...this.products].sort(
+            (a, b) => parseFloat(b.price) - parseFloat(a.price)
+          );
+        default:
+          return this.products;
       }
     },
   },
