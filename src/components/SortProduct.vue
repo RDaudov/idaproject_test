@@ -1,6 +1,6 @@
 <template>
   <select class="sort" id="sort" v-model="modelValue" @change="changeOption">
-    <option disabled value="">По умолчанию</option>
+    <option selected value="">По умолчанию</option>
     <option 
     v-for="option in options" 
     :key="option.value" 
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     changeOption(event) {
-      console.log(event);
+      console.log(event.target.value);
       this.$emit('update:modelValue', event.target.value)
     }
   },

@@ -1,21 +1,21 @@
 <template>
   <h1 class="title">Добавление товара</h1>
   <form-add @add="addTo" />
-  <sort-product v-model="selectedSort" :options="sortOptions"/>
-  <product-list :products="products" @remove="removeFrom" />
+  <sort-product v-model="selectedSort" :options="sortOptions" />
+  <product-list :products="sortProduct" @remove="removeFrom" />
+  <input type="button" value="1" @click="sort"/>
 </template>
 
 <script>
 import FormAdd from "./components/FormAdd.vue";
 import ProductList from "./components/ProductList.vue";
-import SortProduct from "./components/SortProduct.vue"
-
+import SortProduct from "./components/SortProduct.vue";
 export default {
   name: "App",
   components: {
     FormAdd,
     ProductList,
-    SortProduct
+    SortProduct,
   },
   data() {
     return {
@@ -23,15 +23,15 @@ export default {
         {
           id: 1,
           link: "https://i.ibb.co/VS3DyMY/product.png",
-          name: "Наименование товара",
+          name: "bНаименование товара",
           description:
-            "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание ",
+            "aДовольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание ",
           price: 11000,
         },
         {
           id: 2,
           link: "https://i.ibb.co/VS3DyMY/product.png",
-          name: "Наименование товара",
+          name: "aНаименование товара",
           description:
             "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание ",
           price: 12000,
@@ -50,7 +50,7 @@ export default {
           name: "Наименование товара",
           description:
             "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание ",
-          price: 13000,
+          price: 10000,
         },
         {
           id: 5,
@@ -58,7 +58,7 @@ export default {
           name: "Наименование товара",
           description:
             "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание ",
-          price: 13000,
+          price: 3000,
         },
         {
           id: 6,
@@ -72,12 +72,11 @@ export default {
       name: "",
       description: "",
       price: "",
-      selectedSort: '',
+      selectedSort: "",
       sortOptions: [
-        {value: 'name', name: 'По наименованию'},
-        {value: 'price', name: 'По цене min'},
-        {value: 'price', name: 'По цене max'},
-      ]
+        { value: "name", name: "По наименованию" },
+        { value: "priceMin", name: "По цене min" }
+      ],
     };
   },
   methods: {
@@ -88,13 +87,25 @@ export default {
       this.products = this.products.filter((p) => p.id !== product.id);
     },
   },
-  watch: {
-    selectedSort(newValue) {
-      console.log(newValue);
-    }
-  }
+  computed: {
+    sortProduct() {
+      switch (this.selectedSort) {
+        default:
+          return this.products;
+        case "name":
+          return [...this.products].sort((a, b) => {
+            return a[this.selectedSort]?.localeCompare(b[this.selectedSort]);
+          });
+        case "priceMin":
+          return [...this.products].sort((a, b) =>
+            a.selectedSort > b.selectedSort ? 1 : -1
+          );
+      }
+    },
+  },
 };
 </script>
+
 
 <style>
 #app {

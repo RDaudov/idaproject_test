@@ -7,7 +7,7 @@
       @remove="$emit('remove', product)"
     >
       <div class="img-wrap">
-        <img class="img" :srcset="product.link" alt="product" />
+        <img class="img" :src="product.link" alt="product" />
       </div>
       <div class="text">
         <div class="name" id="names">{{ product.name }}</div>

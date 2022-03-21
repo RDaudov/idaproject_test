@@ -1,5 +1,5 @@
 <template>
-  <form ref="anyName" class="form">
+  <form class="form">
     <label for="name" class="label">Наименование товара<span></span></label>
     <input
       class="input"
@@ -32,7 +32,7 @@
       placeholder="Введите ссылку"
     />
     <small class="error" v-if="v$.link.$error"
-      >Поле является обязательным</small
+      >Поле является обязательным. Введите валидный url</small
     >
     <label for="price" class="label">Цена товара<span></span></label>
     <input
@@ -41,7 +41,7 @@
       v-imask="mask"
       :class="{ invalid: v$.price.$error }"
       type="text"
-      v-model.number="v$.price.$model"
+      v-model="v$.price.$model"
       placeholder="Введите цену"
     />
     <small class="error" v-if="v$.price.$error"
@@ -60,7 +60,7 @@
 
 <script>
 import useVuelidate from "@vuelidate/core";
-import { required } from "@vuelidate/validators";
+import { required, url } from "@vuelidate/validators";
 import { IMaskDirective } from "vue-imask";
 
 export default {
@@ -95,7 +95,7 @@ export default {
   validations() {
     return {
       name: { required },
-      link: { required },
+      link: { required, url },
       price: { required },
       description: "",
     };
@@ -104,7 +104,6 @@ export default {
     async submit() {
       const isFormCorrect = await this.v$.$validate();
       if (!isFormCorrect) return;
-      this.$refs.anyName.reset();
     },
     addTo() {
       if (this.name && this.link && this.price) {
