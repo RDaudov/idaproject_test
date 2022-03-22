@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <h1 class="title">Добавление товара</h1>
-    <burger-menu @click="active" />
+    <burger-menu @click="isActive = !isActive" />
     <sort-product v-model="selectedSort" :options="sortOptions" />
   </header>
   <div class="main">
@@ -94,13 +94,6 @@ export default {
     removeFrom(product) {
       this.products = this.products.filter((p) => p.id !== product.id);
     },
-    active() {
-      if(this.isActive) {
-        this.isActive = false
-      }else {
-        this.isActive = true
-      }
-    }
   },
   computed: {
     sortProduct() {
