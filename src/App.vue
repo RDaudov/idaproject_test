@@ -141,6 +141,7 @@ export default {
   display: flex;
   justify-content: space-between;
   max-width: 1440px;
+  margin: auto;
 }
 
 .main {
