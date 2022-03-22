@@ -14,6 +14,11 @@
 <script>
 export default {
   name: "SortProduct",
+  data() {
+    return {
+      modelValue: ''
+    }
+  },
   props: {
     options: {
       type: Array,
@@ -45,14 +50,9 @@ export default {
   border: none;
   grid-area: 1 / 2 / 2 / 3;
   justify-self: end;
-  margin-right: 32px;
+  margin-right: 15px;
   &:focus-visible {
     outline: none;
-  }
-}
-@media only screen and (max-width: 740px) {
-  .sort {
-    margin-right: unset;
   }
 }
 </style>

@@ -1,23 +1,31 @@
 <template>
-  <h1 class="title">Добавление товара</h1>
-  <form-add @add="addTo" />
-  <sort-product v-model="selectedSort" :options="sortOptions" />
-  <product-list :products="sortProduct" @remove="removeFrom" />
+  <header class="header">
+    <h1 class="title">Добавление товара</h1>
+    <burger-menu @click="active" />
+    <sort-product v-model="selectedSort" :options="sortOptions" />
+  </header>
+  <div class="main">
+    <form-add @add="addTo" :class="{ active: isActive}" />
+    <product-list :products="sortProduct" @remove="removeFrom" />
+  </div>
 </template>
 
 <script>
 import FormAdd from "./components/FormAdd.vue";
 import ProductList from "./components/ProductList.vue";
 import SortProduct from "./components/SortProduct.vue";
+import BurgerMenu from "./components/BurgerMenu.vue";
 export default {
   name: "App",
   components: {
     FormAdd,
     ProductList,
     SortProduct,
+    BurgerMenu,
   },
   data() {
     return {
+      isActive: false,
       products: [
         {
           id: 1,
@@ -75,7 +83,7 @@ export default {
       sortOptions: [
         { value: "name", name: "По наименованию" },
         { value: "priceMin", name: "По цене min" },
-        { value: "priceMax", name: "По цене min" },
+        { value: "priceMax", name: "По цене max" },
       ],
     };
   },
@@ -86,6 +94,13 @@ export default {
     removeFrom(product) {
       this.products = this.products.filter((p) => p.id !== product.id);
     },
+    active() {
+      if(this.isActive) {
+        this.isActive = false
+      }else {
+        this.isActive = true
+      }
+    }
   },
   computed: {
     sortProduct() {
@@ -110,27 +125,32 @@ export default {
 };
 </script>
 
-
-<style>
+<style lang="scss" scoped>
 #app {
   background: #e5e5e5;
+  max-width: 1440px;
+  padding: 0 32px;
   margin: auto;
-  padding-top: 32px;
-  display: grid;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1440px;
+}
+
+.main {
+  display: flex;
   justify-content: flex-start;
-  grid-template-columns: 1fr 7fr;
-}
-
-.form {
-  grid-area: 2 / 1 / 3 / 2;
-}
-
-.product-list {
-  grid-area: 2 / 2 / 3 / 3;
+  max-width: 1440px;
+  margin: auto;
 }
 
 .title {
-  grid-area: 1 / 1 / 2 / 2;
   font-family: Source Sans Pro;
   font-style: normal;
   font-weight: 600;
@@ -142,11 +162,27 @@ export default {
   padding-left: 15px;
 }
 
-@media only screen and (max-width: 740px) {
-  #app {
+@media only screen and (max-width: 768px) {
+  .main {
     display: flex;
     flex-direction: column;
-    align-items: center;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    height: 41px;
+    background-color: ghostwhite;
+    padding: 8px;
+  }
+
+  .product-list {
+    padding-top: 15px;
   }
 }
 </style>

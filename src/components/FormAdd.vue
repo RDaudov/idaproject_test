@@ -49,7 +49,7 @@
     >
     <button
       class="button"
-      :disabled="v$.$error"
+      :disabled="v$.$invalid"
       @click.prevent="addTo"
       :class="{ active: !v$.$invalid }"
     >
@@ -148,6 +148,9 @@ export default {
   margin: 24px 8px;
   position: sticky;
   top: 24px;
+  &.active {
+    display: block;
+  }
 }
 
 .input {
@@ -238,9 +241,12 @@ export default {
   }
 }
 
-@media only screen and (max-width: 740px) {
+@media only screen and (max-width: 768px) {
   .form {
+    display: none;
     position: unset;
+    width: auto;
+    z-index: 1;
   }
 }
 </style>

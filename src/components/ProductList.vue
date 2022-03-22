@@ -56,11 +56,13 @@ export default {
   }
 }
 .product-list {
-  display: flex;
-  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: grid;
+  grid-gap: 16px;
   overflow: auto;
-  margin-top: 16px;
-  padding: 0 8px;
+  padding: 16px 8px;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     width: 0;
@@ -69,15 +71,13 @@ export default {
 
 .product-wrap {
   position: relative;
-  width: 332px;
-  height: 423px;
   display: flex;
+  max-width: 400px;
   flex-direction: column;
   background: #fffefb;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
     1px 6px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
-  margin: 8px;
   &:hover {
     box-shadow: -1px 7px 8px rgb(0 0 0 / 10%), 10px 10px 10px rgb(0 0 0 / 20%);
     .img {
@@ -91,7 +91,6 @@ export default {
 
 .img-wrap {
   min-height: 200px;
-  max-width: 332px;
   margin-bottom: 16px;
   overflow: hidden;
   .img {
@@ -145,15 +144,9 @@ export default {
   margin-bottom: 24px;
 }
 
-@media only screen and (max-width: 1440px) {
+@media only screen and (max-width: 1066px) {
   .product-list {
-    justify-content: flex-start;
-  }
-}
-
-@media only screen and (max-width: 720px) {
-  .product-list {
-    justify-content: center;
+    justify-items: center;
   }
 }
 </style>
