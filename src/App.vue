@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <h1 class="title">Добавление товара</h1>
-    <burger-menu @click="isActive = !isActive" />
+    <burger-menu @click="isActive = !isActive" :class="{ active: isActive}" />
     <sort-product v-model="selectedSort" :options="sortOptions" />
   </header>
   <div class="main">

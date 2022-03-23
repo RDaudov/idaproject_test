@@ -30,6 +30,7 @@ export default {
       height: 3px;
       top: 13px;
       left: 0;
+      transition: all .1s ease 0s;
     }
     &::before,
     &::after {
@@ -39,12 +40,26 @@ export default {
       width: 100%;
       height: 3px;
       left: 0;
+      transition: all .3s ease 0s;
     }
     &::before {
       top: 0;
     }
     &::after {
       bottom: 1px;
+    }
+    &.active {
+      &::before {
+        transform: rotate(45deg);
+        top: 14px;
+      }
+      &::after {
+        transform: rotate(-45deg);
+        bottom: 12px;
+      }
+      span {
+        opacity: 0;
+      }
     }
   }
 }

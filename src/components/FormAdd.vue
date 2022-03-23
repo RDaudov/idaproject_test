@@ -149,7 +149,7 @@ export default {
   position: sticky;
   top: 24px;
   &.active {
-    display: block;
+    display: flex;
   }
 }
 
@@ -164,6 +164,7 @@ export default {
   box-sizing: border-box;
   margin-bottom: 16px;
   padding-left: 16px;
+  transition: all .5s ease 0s;
   &.invalid {
     border: 1px solid #ff8484;
     margin-bottom: unset;
@@ -231,7 +232,9 @@ export default {
   width: 284px;
   border: none;
   margin-top: 10px;
+
   &.active {
+    transition: all .3s ease 0s;
     color: #ffffff;
     background: #7bae73;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);

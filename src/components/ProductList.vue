@@ -38,7 +38,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .delete {
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 32px;
@@ -50,6 +50,8 @@ export default {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   top: -8px;
   right: -8px;
+  transform: scale(.001);
+  transition: all .3s ease 0s;
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
     transform: scale(1.03);
@@ -78,13 +80,16 @@ export default {
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
     1px 6px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
+  transition: all .5s ease 0s;
   &:hover {
     box-shadow: -1px 7px 8px rgb(0 0 0 / 10%), 10px 10px 10px rgb(0 0 0 / 20%);
     .img {
+      transition: all .3s ease-in-out 0s;
       transform: scale(1.03);
     }
     .delete {
-      display: flex;
+      transition: all .5s ease 0s;
+      transform: scale(1);
     }
   }
 }
