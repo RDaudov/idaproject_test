@@ -5,7 +5,9 @@
     <sort-product v-model="selectedSort" :options="sortOptions" />
   </header>
   <div class="main">
-    <form-add @add="addTo" :class="{ active: isActive}" />
+  <transition name="form">  
+    <form-add v-show="isActive" @add="addTo" />
+  </transition>
     <product-list :products="sortProduct" @remove="removeFrom" />
   </div>
 </template>
@@ -25,6 +27,7 @@ export default {
   },
   data() {
     return {
+      show: true,
       isActive: false,
       products: [
         {
@@ -119,6 +122,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.form-leave-active, .form-enter-active {
+  transition: all .4s ease;
+}
+
+.form-enter-from, .form-leave-to {
+  transform: translateY(-500px);
+}
+
 #app {
   background: #e5e5e5;
   max-width: 1440px;

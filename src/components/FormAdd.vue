@@ -148,9 +148,6 @@ export default {
   margin: 24px 8px;
   position: sticky;
   top: 24px;
-  &.active {
-    display: flex;
-  }
 }
 
 .input {
@@ -246,10 +243,14 @@ export default {
 
 @media only screen and (max-width: 768px) {
   .form {
-    display: none;
     position: unset;
     width: auto;
-    z-index: 1;
   }
+}
+
+@media only screen and (min-width: 768px) {
+.form {
+  display: flex!important
+}
 }
 </style>

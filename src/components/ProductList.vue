@@ -1,25 +1,27 @@
 <template>
   <div class="product-list">
-    <div
-      class="product-wrap"
-      v-for="product in products"
-      :key="product.id"
-      @remove="$emit('remove', product)"
-    >
-      <div class="img-wrap">
-        <img class="img" :src="product.link" alt="product" />
-      </div>
-      <div class="text">
-        <div class="name" id="names">{{ product.name }}</div>
-        <div class="description" id="descripions">
-          {{ product.description }}
+    <transition-group name="list" key="item">
+      <div
+        class="product-wrap"
+        v-for="product in products"
+        :key="product.id"
+        @remove="$emit('remove', product)"
+      >
+        <div class="img-wrap">
+          <img class="img" :src="product.link" alt="product" />
         </div>
-        <div class="price" id="prices">{{ product.price }}&nbsp;руб.</div>
+        <div class="text">
+          <div class="name" id="names">{{ product.name }}</div>
+          <div class="description" id="descripions">
+            {{ product.description }}
+          </div>
+          <div class="price" id="prices">{{ product.price }}&nbsp;руб.</div>
+        </div>
+        <div class="delete" @click="$emit('remove', product)">
+          <img src="@/assets/delete.svg" />
+        </div>
       </div>
-      <div class="delete" @click="$emit('remove', product)">
-        <img src="@/assets/delete.svg" />
-      </div>
-    </div>
+    </transition-group>
   </div>
 </template>
 <script>
@@ -37,6 +39,18 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 2s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  scale: 0;
+  transform: rotate3d(1, 0, 0, 93deg);
+}
+
 .delete {
   display: flex;
   justify-content: center;
@@ -50,8 +64,8 @@ export default {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   top: -8px;
   right: -8px;
-  transform: scale(.001);
-  transition: all .3s ease 0s;
+  transform: scale(0.001);
+  transition: all 0.3s ease 0s;
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
     transform: scale(1.03);
@@ -66,6 +80,7 @@ export default {
   overflow: auto;
   padding: 16px 8px;
   scrollbar-width: none;
+  overflow: visible;
   &::-webkit-scrollbar {
     width: 0;
   }
@@ -74,21 +89,21 @@ export default {
 .product-wrap {
   position: relative;
   display: flex;
-  max-width: 400px;
+  max-width: 420px;
   flex-direction: column;
   background: #fffefb;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
     1px 6px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
-  transition: all .5s ease 0s;
+  transition: all 0.5s ease 0s;
   &:hover {
     box-shadow: -1px 7px 8px rgb(0 0 0 / 10%), 10px 10px 10px rgb(0 0 0 / 20%);
     .img {
-      transition: all .3s ease-in-out 0s;
+      transition: all 0.3s ease-in-out 0s;
       transform: scale(1.03);
     }
     .delete {
-      transition: all .5s ease 0s;
+      transition: all 0.5s ease 0s;
       transform: scale(1);
     }
   }
