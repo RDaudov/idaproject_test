@@ -47,10 +47,8 @@ export default {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   border: none;
-  grid-area: 1 / 2 / 2 / 3;
   justify-self: end;
   margin-right: 15px;
-  transition: all 0.3s ease 0s;
   &:focus-visible {
     outline: none;
   }
