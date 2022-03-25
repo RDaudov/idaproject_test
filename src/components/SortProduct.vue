@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     changeOption(event) {
-      console.log(event.target.value);
       this.$emit('update:modelValue', event.target.value)
     }
   },
@@ -51,6 +50,7 @@ export default {
   grid-area: 1 / 2 / 2 / 3;
   justify-self: end;
   margin-right: 15px;
+  transition: all 0.3s ease 0s;
   &:focus-visible {
     outline: none;
   }
